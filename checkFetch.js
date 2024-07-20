@@ -2,14 +2,17 @@ const http = require('http');
 const { stringify } = require('querystring');
 
 const server = http.createServer((req,res)=>{
+  console.log(req.method);
+  console.log(req.url);
   if(req.url === '/test'){
     let body = '';
     req.on('data', (data)=>{
       body += data.toString();
     })
     req.on('end',()=>{
-      res.writeHead(300,{"Content-Type":"application/json"});
-      res.end(JSON>stringify({success : 'true'}));
+      console.log(body);
+      res.writeHead(201,{"Content-Type":"application/json"});
+      res.end(JSON.stringify({success : 'true'}));
     });
   }
 });
